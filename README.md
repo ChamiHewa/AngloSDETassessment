@@ -31,7 +31,7 @@ Before you get started with this automation framework, you should have the follo
 - **Reporting**: It includes reporting functionality for clear test result visualization.
 
 ## Getting Started
-To set up the framework, you can either fork or clone the repository from here, or download the ZIP file and set it up in your local workspace.
+To set up the framework, you can either fork or clone the repository from [here](https://github.com/ChamiHewa/AngloSDETassessment.git), or download the ZIP file and set it up in your local workspace.
 
 1. Clone this repository to your local machine:
 
@@ -64,4 +64,4 @@ A html report have been created as the default reporting method and generated re
 3. Run the tests using **mvn test**.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://opensource.org/license/mit/).
