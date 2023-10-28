@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pageObjects.SearchPage;
 
 import java.time.Duration;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class search {
     WebDriver driver;
     String url = "https://automationteststore.com/";
+    SearchPage search;
 
     @Before
     public void browserInitialization(){
@@ -31,6 +33,7 @@ public class search {
     }
     @Given("that I am on the Home page")
     public void that_i_am_on_the_home_page() {
+        search = new SearchPage(driver);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
         String actual = driver.getTitle();
         String expected = "A place to practice your automation skills!";
@@ -41,7 +44,7 @@ public class search {
     }
     @When("^I select the (.*)$")
     public void i_select_the_product_type(String product_type){
-        driver.findElement(By.id("filter_keyword")).click();
+        search.selectSearch();
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         // Get the items of the dropdown to a list
         List<WebElement> ddl = driver.findElements(By.id("search-category"));
@@ -61,11 +64,11 @@ public class search {
     }
     @When("^I add (.*) to the search box$")
     public void i_add_product_to_the_search_box(String product) {
-        driver.findElement(By.id("filter_keyword")).sendKeys(product);
+        search.enterSearch(product);
     }
     @When("click the Search Button")
     public void click_the_search_button() {
-        driver.findElement(By.xpath("//*[@id=\"search_form\"]/div/div/i")).click();
+        search.clickSearch();
     }
     @Then("^I should be able to see all the relevant search results according to the (.*)$")
     public void i_should_be_able_to_see_all_the_relevant_search_results_according_to_the_product(String product) {
@@ -86,12 +89,10 @@ public class search {
     }
     @Then("I should be able to see a text with No such Results")
     public void i_should_be_able_to_see_a_text_with_no_such_results() {
-        driver.findElement(By.xpath("//*[@id=\"maincontainer\"]//*[contains(text(),'There is no product that matches the search criteria.')]"));
+        search.checkResultsMsg();
     }
-
     @After
     public void tearDown() {
         driver.quit();
     }
-
 }
