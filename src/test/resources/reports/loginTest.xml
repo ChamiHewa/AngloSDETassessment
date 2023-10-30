@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="37.804" tests="3" skipped="0" failures="0" errors="0">
-<testcase classname="Feature to test  user login functionality" name="When I go to Login Page, and login with valid credentials, - Example #1.1" time="15.886">
+<testsuite name="Cucumber" time="127.245" tests="8" skipped="0" failures="0" errors="0">
+<testcase classname="Feature to test  user login functionality" name="When I go to Login Page, and login with valid credentials, - Example #1.1" time="11.348">
 <system-out><![CDATA[
 Given user is on login page.................................................passed
 When user enters ChamiTest and Test123......................................passed
@@ -8,7 +8,7 @@ And clicks on Login button..................................................pass
 Then user is navigates to the landing page successfully.....................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Feature to test  user login functionality" name="When I go to Login Page, and login with invalid credentials, - Example #1.1" time="11.36">
+<testcase classname="Feature to test  user login functionality" name="When I go to Login Page, and login with invalid credentials, - Example #1.1" time="9.393">
 <system-out><![CDATA[
 Given user is on login page.................................................passed
 When user enters AAA and 123................................................passed
@@ -16,12 +16,53 @@ And clicks on Login button..................................................pass
 Then user gets a valid error message........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Feature to test  user login functionality" name="When I go to Login Page, and login with invalid credentials, - Example #1.2" time="9.968">
+<testcase classname="Feature to test  user login functionality" name="When I go to Login Page, and login with invalid credentials, - Example #1.2" time="8.452">
 <system-out><![CDATA[
 Given user is on login page.................................................passed
 When user enters !@#$%^guhj and $%&*GHJ.....................................passed
 And clicks on Login button..................................................passed
 Then user gets a valid error message........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Feature to test product filtering based on Name-Type" name="When I go to Home Page, and enter a valid product name on the search bar, - Example #1.1" time="6.466">
+<system-out><![CDATA[
+Given that I am on the Home page............................................passed
+When I add Alleg to the search box..........................................passed
+And click the Search Button.................................................passed
+Then I should be able to see all the relevant search results according to the Alleg.passed
+]]></system-out>
+</testcase>
+<testcase classname="Feature to test product filtering based on Name-Type" name="When I go to Home Page, and enter a valid product name on the search bar, - Example #1.2" time="8.694">
+<system-out><![CDATA[
+Given that I am on the Home page............................................passed
+When I add nail to the search box...........................................passed
+And click the Search Button.................................................passed
+Then I should be able to see all the relevant search results according to the nail.passed
+]]></system-out>
+</testcase>
+<testcase classname="Feature to test product filtering based on Name-Type" name="When I go to Home Page, and enter a invalid product name on the search bar, - Example #1.1" time="5.83">
+<system-out><![CDATA[
+Given that I am on the Home page............................................passed
+When I add test to the search box...........................................passed
+And click the Search Button.................................................passed
+Then I should be able to see a text with No such Results....................passed
+]]></system-out>
+</testcase>
+<testcase classname="Feature to test product filtering based on Name-Type" name="When I go to Home Page, and enter a invalid product name on the search bar, - Example #1.2" time="7.642">
+<system-out><![CDATA[
+Given that I am on the Home page............................................passed
+When I add %^&*VHBJN to the search box......................................passed
+And click the Search Button.................................................passed
+Then I should be able to see a text with No such Results....................passed
+]]></system-out>
+</testcase>
+<testcase classname="Feature to test product filtering based on Name-Type" name="When I go to Home Page, and enter a valid product name with invalid product type on the search bar, - Example #1.1" time="69.201">
+<system-out><![CDATA[
+Given that I am on the Home page............................................passed
+When I select the Books.....................................................passed
+And I add lipstick to the search box........................................passed
+And click the Search Button.................................................passed
+Then I should be able to see a text with No such Results....................passed
 ]]></system-out>
 </testcase>
 </testsuite>

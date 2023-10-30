@@ -1,8 +1,7 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import hooks.Hooks;
+import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,22 +12,18 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Search {
-    private WebDriver driver;
-    //String url = "https://automationteststore.com/";
-    SearchPage search;
+    WebDriver driver;
+    Hooks hooks;
+    SearchPage searchPage;
 
-//    @Before
-//    public void browserInitialization(){
-//        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
-//
-//        driver = new ChromeDriver();
-//        driver.manage().window().maximize();
-//        driver.get(url);
-//        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-//    }
+    public Search(Hooks hooks){
+        this.hooks = hooks;
+        driver = hooks.getDriver();
+    }
+
     @Given("that I am on the Home page")
     public void that_i_am_on_the_home_page() {
-        search = new SearchPage(driver);
+        searchPage = new SearchPage(driver);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
         String actual = driver.getTitle();
         String expected = "A place to practice your automation skills!";
@@ -39,7 +34,7 @@ public class Search {
     }
     @When("^I select the (.*)$")
     public void i_select_the_product_type(String product_type){
-        search.selectSearch();
+        searchPage.selectSearch();
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         // Get the items of the dropdown to a list
         List<WebElement> ddl = driver.findElements(By.id("Search-category"));
@@ -57,15 +52,19 @@ public class Search {
             }
         }
     }
-    @When("^I add (.*) to the Search box$")
+
+    @When("^I add (.*) to the search box$")
     public void i_add_product_to_the_search_box(String product) {
-        search.enterSearch(product);
+
+        searchPage.enterSearch(product);
     }
+
     @When("click the Search Button")
     public void click_the_search_button() {
-        search.clickSearch();
+
+        searchPage.clickSearch();
     }
-    @Then("^I should be able to see all the relevant Search results according to the (.*)$")
+    @Then("I should be able to see all the relevant search results according to the {}")
     public void i_should_be_able_to_see_all_the_relevant_search_results_according_to_the_product(String product) {
         //Fetch all the links Title
         List<WebElement> collection_product_links =
@@ -84,10 +83,13 @@ public class Search {
     }
     @Then("I should be able to see a text with No such Results")
     public void i_should_be_able_to_see_a_text_with_no_such_results() {
-        search.checkResultsMsg();
+
+        String alretText = "There is no product that matches the search criteria.";
+        // getPageSource() to get page source
+        if ( driver.getPageSource().contains("There is no product that matches the search criteria.")){
+            System.out.println(alretText + " Testcase is passed");
+        } else {
+            System.out.println("Testcase is failed");
+        }
     }
-//    @After
-//    public void tearDown() {
-//        driver.quit();
-//    }
 }

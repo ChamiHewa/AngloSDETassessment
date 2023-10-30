@@ -8,32 +8,35 @@ import java.util.Collections;
 import java.util.List;
 
 public class SearchPage {
-    private WebDriver driver;
+    WebDriver uiDriver;
+
     By txt_search = By.id("filter_keyword");
     By ddl_productType = By.id("Search-category");
-    By btn_search = By.xpath("//*[@id=\"search_form\"]/div/div/i");
+    By btn_search = By.xpath(".//i[@class=\"fa fa-search\"]");
     By searchResults = By.xpath("//*[@id=\"maincontainer\"]");
-    By alrt_msg = By.xpath("//*[@id=\"maincontainer\"]//*[contains(text(),'There is no product that matches the Search criteria.')]");
 
     public SearchPage(WebDriver driver){
-        this.driver = driver;
+
+        this.uiDriver = driver;
     }
     public void selectSearch(){
-        driver.findElement(txt_search).click();
+
+        uiDriver.findElement(txt_search).click();
     }
     public void enterSearch(String product){
-        driver.findElement(txt_search).sendKeys(product);
+
+        uiDriver.findElement(txt_search).sendKeys(product);
     }
     public void selectDropdown(){
-        driver.findElement(ddl_productType);
+
+        uiDriver.findElement(ddl_productType);
     }
     public void clickSearch(){
-        driver.findElement(btn_search).click();
+
+        uiDriver.findElement(btn_search).click();
     }
     public void resultsList(){
-        driver.findElement(searchResults);
-    }
-    public void checkResultsMsg(){
-        driver.findElement(alrt_msg);
+
+        uiDriver.findElement(searchResults);
     }
 }

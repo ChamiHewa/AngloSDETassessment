@@ -8,12 +8,10 @@ import org.openqa.selenium.interactions.Actions;
 public class LoginPage {
     WebDriver uiDriver;
 
-    By loginNavLnk = By.xpath(".//a[text()='Login or register']");
-    By mnu_accounts = By.xpath(".//span[text()='Account'][1]");
-    By mnu_login = By.xpath("//*[@id='main_menu_top']/li[2]/ul/li[1]/a/span");
+    By lnk_loginNavLnk = By.xpath(".//a[text()='Login or register']");
     By txt_username = By.id("loginFrm_loginname");
     By txt_password = By.id("loginFrm_password");
-    By btn_login = By.xpath("//*[@id='loginFrm']/fieldset/button");
+    By btn_login = By.xpath("//form[@id=\"loginFrm\"]//button");
     By alrt_error = By.xpath("//*[@id=\"maincontainer\"]/div/div/div/div[1]");
     By alrt_welcome_msg = By.xpath("//*[@id=\"maincontainer\"]/div/div[2]/div[1]/h2");
 
@@ -23,10 +21,11 @@ public class LoginPage {
     }
 
     public void gotoLoginPage() {
-        WebElement LoginNavigation = uiDriver.findElement(loginNavLnk);
+        WebElement LoginNavigation = uiDriver.findElement(lnk_loginNavLnk);
         LoginNavigation.click();
     }
     public void enterUsername(String username){
+
         uiDriver.findElement(txt_username).sendKeys(username);
     }
     public void enterPassword(String password){
