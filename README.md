@@ -46,7 +46,7 @@ To set up the framework, you can either fork or clone the repository from [here]
 3. Run tests:
 
    ```bash
-   mvn test
+   mvn clean test
 
 ## Reporting
 
