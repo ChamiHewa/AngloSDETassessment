@@ -6,9 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 public class LoginPage {
-    WebDriver driver;
+    WebDriver uiDriver;
 
-    By mnu_accounts = By.xpath("//*[@id='main_menu_top']/li[2]/a/span");
+    By loginNavLnk = By.xpath(".//a[text()='Login or register']");
+    By mnu_accounts = By.xpath(".//span[text()='Account'][1]");
     By mnu_login = By.xpath("//*[@id='main_menu_top']/li[2]/ul/li[1]/a/span");
     By txt_username = By.id("loginFrm_loginname");
     By txt_password = By.id("loginFrm_password");
@@ -18,30 +19,26 @@ public class LoginPage {
 
     //creating a constructor as the same name as the class and define driver object here, so that we can use it in stepDef file
     public LoginPage (WebDriver driver){
-        this.driver = driver;
+        this.uiDriver = driver;
     }
 
-    public void gotoLoginPage(){
-        WebElement accountMenu = driver.findElement(mnu_accounts);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(accountMenu).build().perform();
-
-        driver.findElement(mnu_login).click();
+    public void gotoLoginPage() {
+        WebElement LoginNavigation = uiDriver.findElement(loginNavLnk);
+        LoginNavigation.click();
     }
     public void enterUsername(String username){
-
-        driver.findElement(txt_username).sendKeys(username);
+        uiDriver.findElement(txt_username).sendKeys(username);
     }
     public void enterPassword(String password){
 
-        driver.findElement(txt_password).sendKeys(password);
+        uiDriver.findElement(txt_password).sendKeys(password);
     }
     public void clickLogin(){
 
-        driver.findElement(btn_login).click();
+        uiDriver.findElement(btn_login).click();
     }
     public void checkWelcmMsg(){
-        WebElement welcomMsg = driver.findElement(alrt_welcome_msg);
+        WebElement welcomMsg = uiDriver.findElement(alrt_welcome_msg);
         if(welcomMsg.getText().contains("MY ACCOUNT")){
             System.out.println("Logged in successfully with valid credentials. Test case Pass");
         }
@@ -50,7 +47,7 @@ public class LoginPage {
         }
     }
     public void checkErrorMsg(){
-        WebElement errorMsg = driver.findElement(alrt_error);
+        WebElement errorMsg = uiDriver.findElement(alrt_error);
         if(errorMsg.getText().contains("Error: Incorrect login or password provided.")){
             System.out.println("Incorrect login or password provided. Login Failed. Test case Pass");
         }
