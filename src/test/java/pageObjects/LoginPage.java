@@ -17,7 +17,7 @@ public class LoginPage {
     By alrt_welcome_msg = By.xpath("//*[@id=\"maincontainer\"]/div/div[2]/div[1]/h2");
 
     //creating a constructor as the same name as the class and define driver object here, so that we can use it in stepDef file
-    public LoginPage(WebDriver driver) {
+    public LoginPage (WebDriver driver){
         this.driver = driver;
     }
 

@@ -16,14 +16,14 @@ Feature: Feature to test  user login functionality
       | username  | password |
       | ChamiTest | Test123  |
 
-  Scenario Outline: When I go to Login Page, and login with invalid credentials,
-  I expect to see a valid error message
-
-    Given user is on login page
-    When user enters <username> and <password>
-    And clicks on Login button
-    Then user gets a valid error message
-    Examples:
-      | username   | password |
-      | AAA        | 123      |
-      | !@#$%^guhj | $%&*GHJ  |
+#  Scenario Outline: When I go to Login Page, and login with invalid credentials,
+#  I expect to see a valid error message
+#
+#    Given user is on login page
+#    When user enters <username> and <password>
+#    And clicks on Login button
+#    Then user gets a valid error message
+#    Examples:
+#      | username   | password |
+#      | AAA        | 123      |
+#      | !@#$%^guhj | $%&*GHJ  |

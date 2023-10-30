@@ -8,12 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class SearchPage {
-    WebDriver driver;
+    private WebDriver driver;
     By txt_search = By.id("filter_keyword");
-    By ddl_productType = By.id("search-category");
+    By ddl_productType = By.id("Search-category");
     By btn_search = By.xpath("//*[@id=\"search_form\"]/div/div/i");
     By searchResults = By.xpath("//*[@id=\"maincontainer\"]");
-    By alrt_msg = By.xpath("//*[@id=\"maincontainer\"]//*[contains(text(),'There is no product that matches the search criteria.')]");
+    By alrt_msg = By.xpath("//*[@id=\"maincontainer\"]//*[contains(text(),'There is no product that matches the Search criteria.')]");
 
     public SearchPage(WebDriver driver){
         this.driver = driver;

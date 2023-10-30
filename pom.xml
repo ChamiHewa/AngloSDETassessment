@@ -66,13 +66,6 @@
             <version>5.2.4</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>7.14.0</version>
-        </dependency>
-
 
     </dependencies>
 

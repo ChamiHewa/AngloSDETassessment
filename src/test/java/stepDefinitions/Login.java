@@ -1,9 +1,8 @@
 package stepDefinitions;
 
-import io.cucumber.java.*;
+import hooks.Hooks;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageObjects.LoginPage;
 
 import java.util.concurrent.TimeUnit;
@@ -11,23 +10,15 @@ import java.util.concurrent.TimeUnit;
 public class Login {
 
     WebDriver driver;
-    LoginPage login;
-    String url = "https://automationteststore.com/";
+    LoginPage loginPage;
 
-    @Before
-    public void browserInitialization(){
-        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
-
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(url);
-        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-    }
+    public LoginPage getLoginPage() {
+        return loginPage;}
 
     @Given("user is on login page")
     public void user_is_on_login_page() {
-        login = new LoginPage(driver);
-        login.gotoLoginPage();
+        loginPage = this.getLoginPage();
+        loginPage.gotoLoginPage();
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         String actual = driver.getTitle();
@@ -39,26 +30,21 @@ public class Login {
     }
     @When("^user enters (.*) and (.*)$")
     public void user_enters_username_and_password(String username, String password) {
-        login.enterUsername(username);
-        login.enterPassword(password);
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
     }
     @When("clicks on Login button")
     public void clicks_on_login_button() {
-        login.clickLogin();
+        loginPage.clickLogin();
         driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
     }
     @Then("user is navigates to the landing page successfully")
     public void user_is_navigates_to_the_landing_page_successfully() {
-        login.checkWelcmMsg();
+        loginPage.checkWelcmMsg();
     }
     @Then("user gets a valid error message")
     public void user_gets_a_valid_error_message() {
-        login.checkErrorMsg();
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
+        loginPage.checkErrorMsg();
     }
 
 }
